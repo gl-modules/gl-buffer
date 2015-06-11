@@ -69,12 +69,13 @@ var createBuffer = require("gl-buffer")
 ## Constructor
 The constructor for a GL buffer works as follows:
 
-### `var buffer = createBuffer(gl[, data, type, usage])`
+### `var buffer = createBuffer(gl[, type, handle, length, usage])`
 
 * `gl` is a WebGL context
-* `data` is either an integer, an array, a typed array, an array buffer or an ndarray representing the data of the buffer.  Default is `0`
 * `type` is an optional parameter specifying the type of the webgl buffer.  Default is `gl.ARRAY_BUFFER`.
-* `usage` is an optional parameter representing the intended usage for the buffer (in the WebGL sense).  It is not clear this does anything in current WebGL implementations.  Default `gl.DYNAMIC_DRAW`
+* `handle` is either an integer, an array, a typed array, an array buffer or an ndarray representing the data of the buffer.  Default is `0`
+* `length` is an optional parameter that represents the number of indices of the handle
+* `usage` is an optional parameter representing the intended usage for the buffer (in the WebGL sense).  It is not clear this does anything in current WebGL implementations.  Default `gl.DYNAMIC_DRAWl 
 
 ## Properties
 
@@ -97,6 +98,9 @@ The internal WebGL usage for the buffer.
 
 ### `buffer.bind()`
 Binds the buffer to the appropriate target.  Equivalent to `gl.bindBuffer( ... )`
+
+### `buffer.unbind()`
+Unbinds the buffer. Equivalent to `gl.bindBuffer(TYPE, null)`
 
 ### `buffer.dispose()`
 Deletes the buffer releasing all associated resources.  Equivalent to `gl.deleteBuffer(...)`
